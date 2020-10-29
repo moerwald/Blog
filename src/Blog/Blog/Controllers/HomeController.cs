@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Blog.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers
 {
@@ -18,6 +14,18 @@ namespace Blog.Controllers
         public IActionResult Post()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            return View(new Post());
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Post post)
+        {
+            return Redirect(nameof(Index));
         }
         
     }
