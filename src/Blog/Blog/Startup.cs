@@ -19,7 +19,10 @@ namespace Blog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
+
             services.AddControllersWithViews();
+
+            services.AddTransient<IRepository, RepositoryForPosts>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,7 +32,6 @@ namespace Blog
             {
                 app.UseDeveloperExceptionPage();
             }
-
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>

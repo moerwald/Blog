@@ -7,9 +7,9 @@ namespace Blog.Controllers
 {
     public class HomeController: Controller
     {
-        private readonly AppDbContext _ctx;
+        private readonly IRepository _repo;
 
-        public HomeController(AppDbContext ctx) => _ctx = ctx;
+        public HomeController(IRepository repo) => _repo = repo;
 
         public IActionResult Index()
         {
@@ -30,8 +30,8 @@ namespace Blog.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Post post)
         {
-            _ctx.Add(post);
-            await _ctx.SaveChangesAsync();
+            _repo.Add(post);
+            await _repo.SaveAsync();
             return Redirect(nameof(Index));
         }
         
