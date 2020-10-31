@@ -36,5 +36,13 @@ namespace Blog.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        public async Task<IActionResult> Remove(int id)
+        {
+            _repo.Remove(id);
+            await _repo.SaveAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
